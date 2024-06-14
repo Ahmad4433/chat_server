@@ -10,9 +10,10 @@ const Conversion = require("./models/Conversion");
 const Message = require("./models/Message");
 const User = require("./models/User");
 const app = express();
+app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors({ origin: true }));
+
 getConnection();
 
 app.use("/user", userRoutes);
