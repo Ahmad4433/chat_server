@@ -18,7 +18,9 @@ getConnection();
 app.use("/user", userRoutes);
 app.use("/chat/user", chatRoutes);
 app.use("/auth", authRoutes);
-
+app.get('/',(req,res,next)=>{
+  res.send('server is running')
+})
 app.use((error, req, res, next) => {
   const statusCode = error.statusCode || 500;
   const message = error.message || "internal server error";
