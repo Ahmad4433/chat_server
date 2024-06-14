@@ -12,7 +12,7 @@ const User = require("./models/User");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+app.use(cors({ origin: true }));
 getConnection();
 
 app.use("/user", userRoutes);
