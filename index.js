@@ -40,7 +40,7 @@ const userData = new Map();
 io.on("connection", (socket) => {
   const userId = socket.handshake.query.userId;
   userData.set(userId, socket.id);
-
+  io.emit("online", true);
   socket.on("message", async (message) => {
     const receiver = userData.get(message.receiverId); // receiver socket id
     const sender = userData.get(message.senderId); // sender socket id
@@ -101,6 +101,6 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     userData.delete(userId);
-    socket.emit("online", false);
+    io.emit("offline", false);
   });
 });
